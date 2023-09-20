@@ -1,6 +1,7 @@
 package coutinho.demo.jwt.security.model;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
