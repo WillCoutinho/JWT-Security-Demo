@@ -1,12 +1,9 @@
 package coutinho.demo.jwt.security.security;
 
-import jakarta.servlet.Servlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -18,18 +15,18 @@ import org.h2.server.web.WebServlet;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
     private static final String[] SWAGGER_WHITELIST = {
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
-            "/swagger/index.html",
+            "/swagger/index.**",
             "/configuration/ui",
             "/configuration/security",
             "/swagger-ui.html",
-            "/webjars/**"
+            "/webjars/**",
+            "/h2-console/*"
     };
 
     @Bean
@@ -58,7 +55,7 @@ public class WebSecurityConfig {
 
 //    @Bean //HABILITANDO ACESSAR O H2-DATABSE NA WEB
 //    public ServletRegistrationBean h2servletRegistration() {
-//        ServletRegistrationBean registrationBean = new ServletRegistrationBean((Servlet) new WebServlet());
+//        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet(), "/h2-console/*");
 //        registrationBean.addUrlMappings("/h2-console/*");
 //        return registrationBean;
 //    }
